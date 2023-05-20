@@ -6,7 +6,7 @@
 #    By: mkerkeni <mkerkeni@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 09:37:56 by mkerkeni          #+#    #+#              #
-#    Updated: 2023/05/20 10:36:53 by mkerkeni         ###   ########.fr        #
+#    Updated: 2023/05/20 14:49:26 by mkerkeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,7 +28,7 @@ all: $(NAME)
 $(NAME): $(OBJS)
 	@echo "	Compilation in progress..."
 	@$(MAKE) -C $(LIBFT)
-	@$(CC) $(CFLAGS) -o $(NAME) $^ $(LIBFT)libft.a
+	@$(CC) $(CFLAGS) -lreadline -o $(NAME) $^ $(LIBFT)libft.a
 	@echo "	Compiled !"
 
 clean:
