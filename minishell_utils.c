@@ -1,34 +1,31 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   minishell_utils.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkerkeni <mkerkeni@student.42nice.fr>      +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/05/20 09:54:06 by mkerkeni          #+#    #+#             */
-/*   Updated: 2023/05/22 16:20:30 by mkerkeni         ###   ########.fr       */
+/*   Created: 2023/05/22 16:18:54 by mkerkeni          #+#    #+#             */
+/*   Updated: 2023/05/22 16:19:14 by mkerkeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-int	main(int ac, char **av, char **env)
+void	ft_error(char *message)
 {
-	t_command	cmd;
-	char		**args;
-	char		*line;
-	
-	(void)av;
-	if (ac != 1)
-		ft_error("ERROR: Wrong number of arguments\n");
-	while(1)
+	perror(message);
+	exit(EXIT_FAILURE);
+}
+
+void	print_str_of_str(char **str)
+{
+	int	i;
+	i = -1;
+	while (str[++i])
 	{
-		line = readline("minishell$ ");
-		add_history(line);
-		cmd.cmd_line = line;
-		cmd.env = env;
-		args = get_env_vars(cmd);
-		print_str_of_str(args);
+		ft_printf("%s", str[i]);
+		ft_printf(" ");
 	}
-	return (EXIT_SUCCESS);
+	ft_printf("\n");
 }

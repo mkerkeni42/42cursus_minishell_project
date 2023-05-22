@@ -6,7 +6,7 @@
 #    By: mkerkeni <mkerkeni@student.42nice.fr>      +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2023/05/20 09:37:56 by mkerkeni          #+#    #+#              #
-#    Updated: 2023/05/20 14:49:26 by mkerkeni         ###   ########.fr        #
+#    Updated: 2023/05/22 16:20:13 by mkerkeni         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,9 @@ CC		= gcc
 CFLAGS	= -Wall -Wextra -Werror
 CFLAGS += -fsanitize=address -g3
 
-SRCS	= main.c \
+SRCS	=	main.c \
+			get_vars.c \
+			minishell_utils.c \
 
 OBJS = $(SRCS:.c=.o)
 
