@@ -1,62 +1,78 @@
-# **************************************************************************** #
-#                                                                              #
-#                                                         :::      ::::::::    #
-#    Makefile                                           :+:      :+:    :+:    #
-#                                                     +:+ +:+         +:+      #
-#    By: mkerkeni <mkerkeni@student.42nice.fr>      +#+  +:+       +#+         #
-#                                                 +#+#+#+#+#+   +#+            #
-#    Created: 2022/11/20 11:42:45 by mkerkeni          #+#    #+#              #
-#    Updated: 2023/03/28 11:09:58 by mkerkeni         ###   ########.fr        #
-#                                                                              #
-# **************************************************************************** #
+LIBFT_PATH = ./libft/
+SRCS_LIBFT = $(addprefix $(LIBFT_PATH), /check_value/ft_isalnum.c \
+									/check_value/ft_isascii.c \
+									/check_value/ft_isprint.c \
+									/check_value/ft_isalpha.c \
+									/check_value/ft_isdigit.c \
+									/mem_ft/ft_bzero.c \
+									/mem_ft/ft_memset.c \
+									/mem_ft/ft_memcpy.c \
+									/mem_ft/ft_memmove.c \
+									/mem_ft/ft_memcmp.c \
+									/mem_ft/ft_memchr.c \
+									/mem_ft/ft_calloc.c \
+									/str_ft/ft_strlen.c \
+									/str_ft/ft_toupper.c \
+									/str_ft/ft_tolower.c \
+									/str_ft/ft_strlcpy.c \
+									/str_ft/ft_strlcat.c \
+									/str_ft/ft_strchr.c \
+									/str_ft/ft_strrchr.c \
+									/str_ft/ft_strdup.c \
+									/str_ft/ft_strncmp.c \
+									/str_ft/ft_strcmp.c \
+									/str_ft/ft_strnstr.c \
+									/str_ft/ft_substr.c \
+									/str_ft/ft_strjoin.c \
+									/str_ft/ft_strtrim.c \
+									/str_ft/ft_striteri.c \
+									/str_ft/ft_strmapi.c \
+									/str_ft/ft_split.c \
+									/convert_ft/ft_atoi.c \
+									/convert_ft/ft_itoa.c \
+									/printf_ft/ft_putchar_fd.c \
+									/printf_ft/ft_putstr_fd.c \
+									/printf_ft/ft_putendl_fd.c \
+									/printf_ft/ft_putnbr_fd.c \
+									/lst_ft/ft_lstnew.c \
+									/lst_ft/ft_lstadd_back.c \
+									/lst_ft/ft_lstsize.c \
+									/lst_ft/ft_lstlast.c \
+									/lst_ft/ft_lstadd_front.c \
+									/lst_ft/ft_lstdelone.c \
+									/lst_ft/ft_lstiter.c \
+									/lst_ft/ft_lstclear.c \
+									/lst_ft/ft_lstmap.c)
 
-NAME 	= libft.a
-CC 		= gcc
-CFLAGS 	= -Wall -Wextra -Werror
-SRCS 	=  ft_isalpha.c ft_isdigit.c ft_isalnum.c ft_isascii.c ft_isprint.c \
-		ft_strlen.c ft_strlcpy.c ft_strlcat.c ft_toupper.c ft_tolower.c \
-		ft_strncmp.c ft_atoi.c ft_memset.c ft_bzero.c ft_memcpy.c ft_memmove.c \
-		ft_strchr.c ft_strrchr.c ft_memchr.c ft_memcmp.c ft_strdup.c \
-		ft_calloc.c ft_strnstr.c ft_substr.c ft_putchar_fd.c ft_putstr_fd.c \
-		ft_putendl_fd.c ft_putnbr_fd.c ft_strjoin.c ft_strmapi.c ft_striteri.c \
-		ft_itoa.c ft_split.c ft_strtrim.c \
-		ft_printf.c ft_putnbr_hexa.c ft_putnbr_unsigned_int.c print_hexa_low.c \
-		print_hexa_up.c print_nbr.c print_str.c \
-		get_next_line.c get_next_line_utils.c get_next_line_bonus.c \
-		get_next_line_utils_bonus.c \
+FT_PRINTF_PATH = ./ft_printf/
+SRCS_FT_PRINTF = $(addprefix $(FT_PRINTF_PATH), ft_char.c \
+												ft_nbr.c \
+												ft_printf.c)
 
-OBJS = $(SRCS:.c=.o)
+GNL_PATH = ./get_next_line/
+SRCS_GNL = $(addprefix $(GNL_PATH), get_next_line.c \
+									get_next_line_utils.c)
 
-SRCS_BONUS = ft_lstnew.c \
-			ft_lstadd_front.c \
-			ft_lstsize.c \
-			ft_lstlast.c \
-			ft_lstadd_back.c \
-			ft_lstdelone.c \
-			ft_lstclear.c \
-			ft_lstiter.c \
-			ft_lstmap.c \
+OBJS = $(SRCS_LIBFT:.c=.o) $(SRCS_FT_PRINTF:.c=.o) $(SRCS_GNL:.c=.o)
 
-OBJS_BONUS = $(SRCS_BONUS:.c=.o)
+NAME = libft.a
+all : $(NAME)
 
-%.o:%.c
-	@$(CC) $(CFLAGS) -c $< -o $(<:.c=.o)
+CC = gcc
+CFLAGS = -Wall -Wextra -Werror
 
-all: $(NAME)
-	
+.c.o:
+	@$(CC) $(CFLAGS) -c -I ./inc $< -o $(<:.c=.o)
+
 $(NAME): $(OBJS)
-	@ar -rcs $@ $^
+	@ar crs $(NAME) $(OBJS)
 
-bonus: $(OBJS_BONUS) $(OBJS)
-	@ar -rcs $(NAME) $^
-	
 clean:
-	@rm -f $(OBJS) $(OBJS_BONUS)
-	@echo "	Binary files have been deleted successfully !"
+	@rm -rf $(OBJS)
 
 fclean: clean
-	@rm -f $(NAME)
+	@rm -rf $(NAME)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re
