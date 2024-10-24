@@ -1,81 +1,81 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   error_msg_parsing.c                                :+:      :+:    :+:   */
+/*   error_msg_exec.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: mkerkeni <mkerkeni@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2023/09/07 12:43:46 by mkerkeni          #+#    #+#             */
-/*   Updated: 2023/10/06 12:34:24 by mkerkeni         ###   ########.fr       */
+/*   Created: 2023/09/13 22:17:16 by mkerkeni          #+#    #+#             */
+/*   Updated: 2023/10/30 21:42:48 by mkerkeni         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-char	*get_bad_tok_err(char *error, char *err_msg)
+char	*get_cmd_error(char *error, char *err_msg)
 {
 	char	*begin;
 	char	*end;
 
-	set_exit_status(1);
+	set_exit_status(127);
 	begin = "minishell: ";
-	end = ": undefined token\n";
+	end = ": command not found\n";
 	err_msg = ft_strjoin(begin, error, 0);
 	err_msg = ft_strjoin(err_msg, end, 1);
 	return (err_msg);
 }
 
-char	*get_syntax_err(char *error, char *err_msg)
+char	*get_exit_error(char *error, char *err_msg)
 {
+	char	*exit_msg;
 	char	*begin;
 	char	*end;
 
 	set_exit_status(2);
+	exit_msg = "exit: ";
 	begin = "minishell: ";
-	end = "syntax error near unexpected token `";
-	err_msg = ft_strjoin(begin, end, 0);
+	end = ": numeric argument required\n";
+	err_msg = ft_strjoin(begin, exit_msg, 0);
 	err_msg = ft_strjoin(err_msg, error, 1);
-	err_msg = ft_strjoin(err_msg, "\'\n", 1);
+	err_msg = ft_strjoin(err_msg, end, 1);
 	return (err_msg);
 }
 
-char	*get_quote_error(char *err_msg)
-{
-	char	*end;
-	char	*begin;
-
-	set_exit_status(1);
-	begin = "minishell: ";
-	end = "syntax error: expecting closing quote\n";
-	err_msg = ft_strjoin(begin, end, 0);
-	return (err_msg);
-}
-
-char	*get_ambig_err(char *error, char *err_msg)
+char	*get_mult_arg_err(char *error, char *err_msg)
 {
 	char	*begin;
 	char	*end;
 
 	set_exit_status(1);
 	begin = "minishell: ";
-	end = ": Ambigous redirection\n";
+	end = "too many arguments\n";
 	err_msg = ft_strjoin(begin, error, 0);
 	err_msg = ft_strjoin(err_msg, end, 1);
 	return (err_msg);
 }
 
-char	*get_var_name_err(char *error, char *err_msg)
+char	*get_file_error(char *error, char *err_msg)
 {
-	char	*export_msg;
 	char	*begin;
 	char	*end;
 
 	set_exit_status(1);
-	export_msg = "export: ";
 	begin = "minishell: ";
-	end = ": not a valid identifier\n";
-	err_msg = ft_strjoin(begin, export_msg, 0);
-	err_msg = ft_strjoin(err_msg, error, 1);
+	end = ": No such file or directory\n";
+	err_msg = ft_strjoin(begin, error, 0);
+	err_msg = ft_strjoin(err_msg, end, 1);
+	return (err_msg);
+}
+
+char	*get_dir_error(char *error, char *err_msg)
+{
+	char	*begin;
+	char	*end;
+
+	set_exit_status(126);
+	begin = "minishell: ";
+	end = ": Is a directory\n";
+	err_msg = ft_strjoin(begin, error, 0);
 	err_msg = ft_strjoin(err_msg, end, 1);
 	return (err_msg);
 }

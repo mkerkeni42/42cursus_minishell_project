@@ -16,10 +16,11 @@ UP = UP = \033[A
 #-------------------SRCS--------------------#
 SRCS	=	main.c \
 			minishell_utils.c \
-			error_msg.c \
-			error_msg_parsing.c \
-			error_msg_exec.c \
-			exit_status.c \
+			./process_control/exit_status.c \
+			./process_control/signal.c \
+			./error_handling/error_msg.c \
+			./error_handling/error_msg_parsing.c \
+			./error_handling/error_msg_exec.c \
 			./lexer/lst_functions.c \
 			./lexer/get_token.c \
 			./lexer/check_token.c \
@@ -36,8 +37,8 @@ SRCS	=	main.c \
 			./expander/get_vars.c \
 			./expander/get_value.c \
 			./parser/pipe_check.c \
-			get_cmd_infos.c \
-			get_redirections.c \
+			./parser/get_cmd_infos.c \
+			./parser/get_redirections.c \
 			./execution/processes.c \
 			./execution/check_exec_file.c \
 			./execution/set_redirections.c \
@@ -52,8 +53,7 @@ SRCS	=	main.c \
 			./builtins/built_unset.c \
 			./builtins/built_unset_utils.c \
 			./builtins/built_utils.c \
-			./builtins/update_vars.c \
-			signal.c
+			./builtins/update_vars.c
 
 OBJS = $(SRCS:.c=.o)
 
