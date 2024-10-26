@@ -13,17 +13,28 @@ Collaborating with **Yani K.**, we tackled the complexities of shell implementat
 ## Technologies Used 🛠️
 <img src="https://cdn.worldvectorlogo.com/logos/c-1.svg" alt="C" width="40" height="40"/>
 
-## Challenges Faced
-One of the biggest hurdles in this project was parsing the command line. Designing the lexer, parser, and expander required a deep understanding of syntax and structure.
-There were moments of confusion as we navigated through various edge cases and attempted to handle user inputs robustly. 
-However, the challenge also became a bonding experience with Yani K., as we supported each other through late-night debugging sessions. 
-Together, we transformed this complex task into a valuable learning opportunity, solidifying our friendship and technical skills.
+## How to Use ⚙️
+
+Just compile the program with `make` and run it with:
+```
+./minishell
+```
+And then, you can use it as a real shell !
+
+## Challenges Faced 💪
+One of the biggest hurdles in this project was parsing the command line. Designing the **lexer**, **parser**, and **expander** required a deep understanding of syntax and structure
+.  
+
+There were moments of confusion as we navigated through various edge cases and attempted to handle user inputs robustly.❓💻  
+
+However, the challenge also became a bonding experience with Yani K., as we supported each other through late-night debugging sessions.🌙🔧  
+Together, we transformed this complex task into a valuable learning opportunity, solidifying our friendship and technical skills. 🤝📚
 
 ## What I Learned 🌱
 I gained skills in teamwork, problem-solving, and resilience. Key takeaways include:
-- Understanding concurrency and process management.
-- Importance of proper signal management.
-- Value of collaboration in overcoming challenges.
+- Understanding concurrency and **process management**.
+- Importance of proper **signal management**.
+- Value of **collaboration** in overcoming challenges.
 
 **Fun Facts** 🤓: This project is known for testing friendships! While many say it can break bonds, my partnership with Yani K. only strengthened ours. Completing this project marks a significant milestone in the 42 curriculum!
 
